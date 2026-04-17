@@ -1,0 +1,33 @@
+databaseChangeLog:
+  - include:
+      file: src/main/liquibase/changelog.yml
+      relativeToChangelogFile: false
+
+  #проверка продовых миграции на дубликаты id
+  - sql: alter table databasechangelog add constraint databasechangelog_pk primary key (id);
+  - sql: alter table databasechangelog drop constraint databasechangelog_pk;
+
+  - include:
+      file: migrations/participant-customer.sql
+      relativeToChangelogFile: true
+  - include:
+      file: migrations/other-data.sql
+      relativeToChangelogFile: true
+  - include:
+      file: migrations/cflow.sql
+      relativeToChangelogFile: true
+  - include:
+      file: migrations/rates.sql
+      relativeToChangelogFile: true
+  - include:
+      file: migrations/test-data.sql
+      relativeToChangelogFile: true
+  - include:
+      file: migrations/dummy-data-for-repository-tests.sql
+      relativeToChangelogFile: true
+  - include:
+      file: migrations/participant-balance.sql
+      relativeToChangelogFile: true
+  - include:
+      file: migrations/minimal-contract-flow-transfer.sql
+      relativeToChangelogFile: true
