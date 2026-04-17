@@ -258,7 +258,6 @@ class OperationReportVersionLookupTest extends DbIntegrationTest {
                     SELECT * FROM t_participant_property
                     WHERE participant_id = { participant_id }
                     AND prop_name = 'operation_report_version';
-
                     INSERT INTO t_participant_property (participant_id, prop_name, prop_value, enabled)
                     VALUES ({ participant_id }, 'operation_report_version', 'CE_V2_EXCEL_CUSTOM', true);
                     """

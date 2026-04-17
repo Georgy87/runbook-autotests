@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ "${SKIP_RUNBOOK_TESTS:-}" == "1" ]]; then
+    echo "Skipping runbook tests because SKIP_RUNBOOK_TESTS=1"
+    exit 0
+fi
+
+if [[ -z "${DB_PASSWORD:-}" ]]; then
+    cat >&2 <<'MESSAGE'
+DB_PASSWORD is required for pre-push runbook tests.
+
+Run:
+  export DB_PASSWORD=<local-password>
+  git push
+
+Emergency bypass:
+  SKIP_RUNBOOK_TESTS=1 git push
+MESSAGE
+    exit 1
+fi
+
+echo "Running runbook DB tests before push..."
+scripts/run-runbook-tests.sh
