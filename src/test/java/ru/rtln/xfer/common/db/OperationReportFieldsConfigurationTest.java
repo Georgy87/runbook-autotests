@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@DisplayName("2.1-2.3 Сотрудник L2: настройка кастомных полей operation_report_fields")
+@DisplayName("2.2-2.3 Сотрудник L2: настройка кастомных полей operation_report_fields")
 @TestMethodOrder(OrderAnnotation.class)
 class OperationReportFieldsConfigurationTest extends DbIntegrationTest {
 
@@ -39,40 +39,9 @@ class OperationReportFieldsConfigurationTest extends DbIntegrationTest {
             OperationReportFieldsConfigurationTest.class,
             Path.of("target", "runbook-reports", "operation_report_fields_2_descriptions.md"),
             Path.of("target", "runbook-reports", "operation_report_fields_2_descriptions.html"),
-            "Описания Сценариев Runbook 2.1-2.3",
-            "[runbook] Операционные реестры в формате excel.pdf"
+            "Описания Сценариев Runbook 2.2-2.3",
+            "[runbook] Операционные реестры в формате excel"
         );
-    }
-
-    @DisplayName("2.1 Формирует строку из полей через запятую в порядке требования партнёра")
-    @RunbookDescription(
-        order = 10,
-        id = "RUNBOOK-2.1-FORM-FIELDS-CSV",
-        title = "Формирует строку из полей через запятую в порядке требования партнёра",
-        given = "Бизнес-эксперт передал список кастомных полей в требуемой очерёдности.",
-        action = "Сотрудник L2 формирует CSV-строку из полей через запятую без изменения порядка.",
-        expected = "CSV-строка должна сохранить порядок полей, указанный бизнес-экспертом.",
-        sql = """
-            'check_sum,platform_reference_number,creation_time,payment_amount,payment_currency'
-            """
-    )
-    @Order(10)
-    @Test
-    void formsOperationReportFieldsCsvInRequestedOrder(
-        TestInfo testInfo,
-        TestReporter testReporter
-    ) {
-        RunbookDescriptionReporter.publishAnnotation(testInfo, testReporter);
-
-        List<String> requestedFields = List.of(
-            "creation_time",
-            "check_sum",
-            "platform_reference_number"
-        );
-
-        String reportFields = String.join(",", requestedFields);
-
-        assertEquals(CUSTOM_FIELDS, reportFields);
     }
 
     @DisplayName("2.2 Выполняет INSERT записи operation_report_fields")
@@ -89,7 +58,7 @@ class OperationReportFieldsConfigurationTest extends DbIntegrationTest {
             VALUES (
                 { participant_id },
                 'operation_report_fields',
-                '{      }',
+                '{ строка из полей через запятую }',
                 true
             );
             """

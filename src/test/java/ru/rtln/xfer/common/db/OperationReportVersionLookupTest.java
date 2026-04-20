@@ -33,7 +33,7 @@ class OperationReportVersionLookupTest extends DbIntegrationTest {
             Path.of("target", "runbook-reports", "operation_report_version_1_3_descriptions.md"),
             Path.of("target", "runbook-reports", "operation_report_version_1_3_descriptions.html"),
             "Описания Сценариев Runbook 1.3",
-            "[runbook] Операционные реестры в формате excel.pdf"
+            "[runbook] Операционные реестры в формате excel"
         );
     }
 
