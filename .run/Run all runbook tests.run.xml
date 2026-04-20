@@ -25,7 +25,7 @@
           <option name="goals">
             <list>
               <option value="test" />
-              <option value="-Dtest=OperationReportVersionLookupTest,OperationReportFieldsConfigurationTest" />
+              <option value="-Dtest=OperationReportVersionLookupTest,OperationReportFieldsConfigurationTest,UpdateBalancesTest" />
             </list>
           </option>
           <option name="multimoduleDir" />
